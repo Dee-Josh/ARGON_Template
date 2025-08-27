@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 
 const AuthContext = createContext();
@@ -33,8 +33,19 @@ export function AuthProvider(props){
     }
 
     return<>
-        <AuthContext.Provider value={{ current: user, signUp, signIn}}>
+        <AuthContext.Provider value={{ current: signUp, signIn}}>
             {props.children}
         </AuthContext.Provider>
     </>
+}
+
+export function useAuth(){ // Function to allow the AuthContext available to every other file (jsx) so that we won't have to import it everywhere
+
+    const context = useContext(AuthContext);
+
+    if (context === undefined){
+        throw new Error ("useAuth must be inside of the Auth Provider");
+    }
+
+    return context; 
 }

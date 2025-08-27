@@ -1,3 +1,4 @@
+import { useAuth } from "@/lib/context/AuthContext";
 import { router } from "expo-router";
 import React, { useState} from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, } from 'react-native';
@@ -23,25 +24,47 @@ export default function LogIn() {
         }
     }
 
-    const [isSignedUp, setIsSignedUp] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(false);
     const [email, updateEmail] = useState("");
     const [password, updatePassword] = useState("");
     const [error, setError] = useState("");
     
+    
+    const { signIn, signUp } = useAuth();
+    
     async function  handleAuth(){
         if (email === "" || password === "") {
-            setError("Please fill all fields.")
+            // setError("Please fill all fields."); 
+            showToast("error", "Please fill all fields.");
+            return;
         }else if (password.length < 8){
-            setError("Password cannot be less than 8.")
+            // setError("Password cannot be less than 8.");
+            showToast("error", "Password cannot be less than 8.");
+            return;
         }else{
             setError("")
         }
-        
-        if (error){
-            showToast("error", error);
-        }
 
         // isSignedUp ? signIn() : signUp();
+
+        if (isSignUp){
+            showToast("error", "creating account");
+            const error = await signUp(email, password);
+            if (error){
+                // setError(error);
+                showToast("error", error);
+                return
+            }
+        }else{
+            const error = await signIn(email, password);
+            if (error){
+                setError(error);
+                showToast("error", error);
+                return
+            }
+
+            router.replace("/")
+        }
 
     }
 
@@ -52,7 +75,7 @@ export default function LogIn() {
                 <Toast />
             <View>
                 <Text style={styles.welcomeText} variant="headlineMedium">
-                    {isSignedUp ? "Welcome Back" : "Create Account"}
+                    {isSignUp ? "Create Account" : "Welcome Back"}
                 </Text>
                 <TextInput 
                     label="Email"
@@ -87,12 +110,12 @@ export default function LogIn() {
                         // router.replace("/(tabs)");
                         // router.navigate("/(tabs)");
                         handleAuth();
-                }}>{isSignedUp ? "Sign In" : "Sign Up"}</Button>
+                }}>{isSignUp ? "Sign Up" : "Sign In"}</Button>
                 <Button textColor="#009688" onPress={()=>{
-                        setIsSignedUp(!isSignedUp);
+                        setIsSignUp(!isSignUp);
                     }}
                 >
-                    {isSignedUp ? "Don't have an account? Sign Up." : "Already have an account? Sign In."}
+                    {isSignUp ? "Already have an account? Sign In." : "Don't have an account? Sign Up."}
                 </Button>
             </View>
         </KeyboardAvoidingView>
