@@ -33,7 +33,7 @@ export function AuthProvider(props){
     }
 
     return<>
-        <AuthContext.Provider value={{ current: user, signUp, SignIn}}>
+        <AuthContext.Provider value={{ current: user, signUp, signIn}}>
             {props.children}
         </AuthContext.Provider>
     </>

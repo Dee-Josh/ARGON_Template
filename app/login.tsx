@@ -41,6 +41,8 @@ export default function LogIn() {
             showToast("error", error);
         }
 
+        // isSignedUp ? signIn() : signUp();
+
     }
 
 
