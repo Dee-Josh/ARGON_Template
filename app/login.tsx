@@ -48,13 +48,14 @@ export default function LogIn() {
         // isSignedUp ? signIn() : signUp();
 
         if (isSignUp){
-            showToast("error", "creating account");
+            // showToast("error", "creating account");
             const error = await signUp(email, password);
             if (error){
                 // setError(error);
                 showToast("error", error);
                 return
             }
+            router.replace("/(tabs)")
         }else{
             const error = await signIn(email, password);
             if (error){

@@ -1,4 +1,6 @@
 import { createContext, useContext } from "react";
+import { account } from "../appwrite";
+
 
 
 const AuthContext = createContext();
