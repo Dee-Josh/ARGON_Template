@@ -1,3 +1,5 @@
+// HOME SCREEN
+
 import { View, StyleSheet } from "react-native";
 import { Text, TextInput } from "react-native-paper";
 
@@ -29,3 +31,5 @@ const styles = StyleSheet.create({
       backgroundColor: '#009688',
   }
 })
+
+
