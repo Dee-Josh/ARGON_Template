@@ -1,3 +1,5 @@
+// FOR AUTHENTICATING ACCOUNT CREATION AND LOGIN USING APPWRITE
+
 import { createContext, useContext } from "react";
 import { account } from "../appwrite";
 
