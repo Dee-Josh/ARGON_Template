@@ -22,7 +22,7 @@ const isAuth = false;
 export default function RootLayout() {
 
   // const [isAuth, setIsAuth] = useState(false);
-
+  // Use code from chatgpt to update the splashscreen and the authentication screen display logic
 
   return(
     <AuthProvider>

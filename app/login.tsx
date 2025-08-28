@@ -6,6 +6,7 @@ import { Text, TextInput, Button, Provider as PaperProvider } from 'react-native
 import Toast from 'react-native-toast-message';
 
 
+// LOGIN AND SIGN UP SCREEN
 export default function LogIn() {
 
     function showToast (type: string, error: string){
