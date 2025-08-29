@@ -42,7 +42,7 @@ export default function TabsLayout() {
 //   )
 // }
 
-// To render one icon when the tab is focused and another when it is not focused.
+
 
 
  

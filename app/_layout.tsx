@@ -13,7 +13,7 @@ import { AuthProvider } from "@/lib/context/AuthContext";
 //   })
 
 //   return <>{children}</>
-// }
+// } // - find the alternative for this in JS
 
 const isAuth = false;
 
