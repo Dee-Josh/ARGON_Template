@@ -8,7 +8,14 @@ export default  function SignInScreen () {
         <>
             <View>
                 <Text>Welcome Back</Text>
-                <TextInput />
+                <TextInput 
+                    label="Email"
+                    autoCapitalize='none'
+                    placeholder='example@email.com'
+                />
+                <TextInput
+                    label="Passw"
+                />
             </View>
         </>
     )
