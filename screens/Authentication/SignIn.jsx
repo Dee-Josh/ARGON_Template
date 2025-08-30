@@ -22,8 +22,9 @@ export default  function SignInScreen () {
                         mode='outline'
                     />
                     <Button mode='contained'>
-
+                        Sign In
                     </Button>
+                    <Button mode='text' onPress={handleSwitch}>Don't have an account? Sign Up.</Button>
                 </View>
             </KeyboardAvoidingView>
         </>
