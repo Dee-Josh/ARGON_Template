@@ -13,8 +13,7 @@ export function AuthProvider(props){
 
     useEffect(()=>{
         getUser();
-
-    })
+    }, [])
 
     const getUser = async () => {
         try {
@@ -40,7 +39,7 @@ export function AuthProvider(props){
     }
 
     // FOR SIGNING IN EXISTING USER 
-    const signIn = async (user, email, password) => {
+    const signIn = async (email, password) => {
         try{
             await account.createEmailPasswordSession(email, password);
             return null
@@ -53,7 +52,7 @@ export function AuthProvider(props){
     }
 
     return<>
-        <AuthContext.Provider value={{ current: signUp, signIn}}>
+        <AuthContext.Provider value={{ current: user, signUp, signIn}}>
             {props.children}
         </AuthContext.Provider>
     </>

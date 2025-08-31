@@ -1,19 +1,26 @@
-import { Stack } from "expo-router";
-import { AuthProvider } from "@/lib/context/AuthContext";
+import { Stack, useRouter, useSegments } from "expo-router";
+import { AuthProvider, useAuth } from "@/lib/context/AuthContext";
+import { useEffect } from "react";
 
-// function RouteGuard({children}: {children: React.ReactNode}){
-//   useEffect(()=>{
-//     const isAuth = false;
-    
-//     useEffect(()=>{
-//       if(!isAuth){
-//         router.replace("/login")
-//       }
-//     })
-//   })
 
-//   return <>{children}</>
-// } // - find the alternative for this in JS
+function RouteGuard({children}: {children: React.ReactNode}){
+  const router = useRouter();
+  const {user} = useAuth();
+  const segments = useSegments();
+
+
+  useEffect(()=>{
+    const inAuthGroup = segments[0] === "login";
+    if(!user && !inAuthGroup){
+      router.replace("/login");
+    }else if(user && inAuthGroup){
+      router.replace("/");
+    } 
+  }), [user, segments];
+  
+
+  return <>{children}</>
+} // - find the alternative for this in JS
 
 const isAuth = false;
 
