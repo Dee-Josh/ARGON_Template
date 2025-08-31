@@ -1,6 +1,6 @@
 // FOR AUTHENTICATING ACCOUNT CREATION AND LOGIN USING APPWRITE
 
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { account } from "../appwrite";
 
 
@@ -8,6 +8,22 @@ import { account } from "../appwrite";
 const AuthContext = createContext();
 
 export function AuthProvider(props){
+
+    const [user, setUser] = useState();
+
+    useEffect(()=>{
+        getUser();
+
+    })
+
+    const getUser = async () => {
+        try {
+            const session = await account.get()
+            setUser(session)
+        } catch (error) {
+            setUser(null)
+        }
+    }
 
     // FOR SIGNING UP NEW USER
     const signUp = async (email, password) => {
@@ -24,7 +40,7 @@ export function AuthProvider(props){
     }
 
     // FOR SIGNING IN EXISTING USER 
-    const signIn = async (email, password) => {
+    const signIn = async (user, email, password) => {
         try{
             await account.createEmailPasswordSession(email, password);
             return null
