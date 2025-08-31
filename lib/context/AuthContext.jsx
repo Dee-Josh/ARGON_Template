@@ -11,6 +11,8 @@ export function AuthProvider(props){
 
     const [user, setUser] = useState();
 
+    const [isLoadingUser, setIsLoadingUser] = useState(true); 
+
     useEffect(()=>{
         getUser();
     }, [])
