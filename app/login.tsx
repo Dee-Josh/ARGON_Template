@@ -29,6 +29,7 @@ export default function LogIn() {
     const [email, updateEmail] = useState("");
     const [password, updatePassword] = useState("");
     const [error, setError] = useState("");
+    const [tempErrDisplay, setTempErrDisplay] = useState("");
     
     
     const { signIn, signUp } = useAuth();
@@ -37,10 +38,12 @@ export default function LogIn() {
         if (email === "" || password === "") {
             // setError("Please fill all fields."); 
             showToast("error", "Please fill all fields.");
+            setTempErrDisplay("Please fill all fields.");
             return;
         }else if (password.length < 8){
             // setError("Password cannot be less than 8.");
             showToast("error", "Password cannot be less than 8.");
+            setTempErrDisplay("Password cannot be less than 8.");
             return;
         }else{
             setError("")
@@ -54,6 +57,7 @@ export default function LogIn() {
             if (error){
                 // setError(error);
                 showToast("error", error);
+                setTempErrDisplay(error);
                 return
             }
             router.replace("/(tabs)")
@@ -62,6 +66,7 @@ export default function LogIn() {
             if (error){
                 setError(error);
                 showToast("error", error);
+                setTempErrDisplay(error);
                 return
             }
 
@@ -108,6 +113,7 @@ export default function LogIn() {
                     }}
                     onChangeText={updatePassword}
                 />  
+                <Text style={{color: 'red'}}>{tempErrDisplay}</Text>
                 <Button style={styles.btn} mode="contained" onPress={()=>{
                         // router.replace("/(tabs)");
                         // router.navigate("/(tabs)");

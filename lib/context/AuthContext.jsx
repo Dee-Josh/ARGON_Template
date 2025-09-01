@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { account } from "../appwrite";
+import { ID } from "react-native-appwrite";
 
 
 
@@ -23,6 +24,8 @@ export function AuthProvider(props){
             setUser(session)
         } catch (error) {
             setUser(null)
+        }finally {
+            setIsLoadingUser(false)
         }
     }
 
@@ -54,7 +57,7 @@ export function AuthProvider(props){
     }
 
     return<>
-        <AuthContext.Provider value={{ current: user, signUp, signIn}}>
+        <AuthContext.Provider value={{ current: user, isLoadingUser, signUp, signIn}}>
             {props.children}
         </AuthContext.Provider>
     </>
