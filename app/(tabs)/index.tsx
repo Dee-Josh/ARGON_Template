@@ -17,7 +17,7 @@ export default function Index() {
         }}
         variant="titleMedium"
       >
-        Toluwa, Welcome to the Home Screen
+        Welcome to the Home Screen
       </Text>
     </View>
   );

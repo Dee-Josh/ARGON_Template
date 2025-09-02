@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 
-import Entypo from '@expo/vector-icons/Entypo';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 export default function TabsLayout() {
@@ -9,14 +9,26 @@ export default function TabsLayout() {
       <Tabs.Screen 
         name="index" 
         options={{title: 'Home',
-        tabBarIcon: ({color, focused})=>
-        {return focused ? <Entypo name='home' size={24}color={color} /> : <Entypo name='key' size={24}color={color} /> }}} 
+        tabBarIcon: ({color, size})=>(
+          <MaterialCommunityIcons name="calendar-today" size={size} color={color} />
+        )
+        }} 
       />
       <Tabs.Screen 
-        name="resources" 
-        options={{title: 'Resources',
-        tabBarIcon: ({color})=>
-        (<Entypo name='book' size={24}color={color} />)}} 
+        name="streaks" 
+        options={{title: 'Streaks',
+        tabBarIcon: ({color, size})=>(
+          <MaterialCommunityIcons name="chart-line" size={size} color={color} />
+        )
+        }} 
+      />
+      <Tabs.Screen 
+        name="add-habit" 
+        options={{title: 'Add Habit',
+        tabBarIcon: ({color, size})=>(
+          <MaterialCommunityIcons name="plus-circle" size={size} color={color} />
+        )
+        }} 
       />
     </Tabs>
   )
