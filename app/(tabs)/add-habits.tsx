@@ -5,14 +5,15 @@ import { TextInput } from "react-native-paper";
 
 export default function AddHabitsScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Welcome to the resources screen</Text>
+    <View>
+      <TextInput
+        label="Title"
+        mode="outlined"
+      />
+      <TextInput
+        label="Description"
+        mode="outlined"
+      />
     </View>
   );
 }
