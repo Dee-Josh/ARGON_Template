@@ -17,10 +17,11 @@ export default function AddHabitsScreen() {
         mode="outlined"
         style={styles.input}
       />
-      <View>
+      <View style={styles.frequencyContainer}>
         <SegmentedButtons buttons={FREQUENCIES.map((freq)=> ({
           value: freq,
           label: freq.charAt(0).toUpperCase() + freq.slice(1)
+          // style={styles.segmentedButtons}
         })} />
       </View>
       <Button mode="contained">
@@ -32,5 +33,15 @@ export default function AddHabitsScreen() {
 
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#f5f5f5",
+  },
+  input: {
+    marginBottom: 10,
+  },
+  frequencyContainer: {
+    marginBottom: 24,
+  },
 })
