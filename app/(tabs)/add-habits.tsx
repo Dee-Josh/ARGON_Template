@@ -7,8 +7,8 @@ const FREQUENCIES = ["daily", "weekly", "monthly"]
 
 export default function AddHabitsScreen() {
   const [title, setTitle] = useState("");
-  const [description, setTitle] = useState("");
-  const [frewqu, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [frequency, setFrequency] = useState("");
 
 
   return (
