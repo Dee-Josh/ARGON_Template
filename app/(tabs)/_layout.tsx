@@ -23,7 +23,7 @@ export default function TabsLayout() {
         }} 
       />
       <Tabs.Screen 
-        name="add-habit" 
+        name="add-habits" 
         options={{title: 'Add Habit',
         tabBarIcon: ({color, size})=>(
           <MaterialCommunityIcons name="plus-circle" size={size} color={color} />

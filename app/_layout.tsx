@@ -24,7 +24,7 @@ function RouteGuard({children}: {children: React.ReactNode}){
   return <>{children}</>
 } // - find the alternative for this in JS
 
-const isAuth = false;
+const isAuth = true;
 
 
 
@@ -36,12 +36,12 @@ export default function RootLayout() {
   return(
     <AuthProvider>
       <SafeAreaProvider>
-        <RouteGuard>
+        {/* <RouteGuard> */}
         <Stack screenOptions={{headerShown: false}}>
           {/* <Stack.Screen  name={!isAuth ? "login" : "(tabs)" } options={{headerShown: false}} /> */}
           <Stack.Screen name="(tabs)" options={{headerShown: false}} />
         </Stack>
-        </RouteGuard>
+        {/* </RouteGuard> */}
       </SafeAreaProvider>
     </AuthProvider>
   )
