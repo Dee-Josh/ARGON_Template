@@ -12,7 +12,7 @@ export default function StreaksScreen() {
         alignItems: "center",
       }}
     >
-      <Text>Welcome to the resources screen</Text>
+      <Text>Welcome to the streaks screen</Text>
     </View>
   );
 }

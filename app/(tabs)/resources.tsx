@@ -13,6 +13,7 @@ export default function Index() {
       }}
     >
       <Text>Welcome to the resources screen</Text>
+      <Text>Coming soon - Giant Reels</Text>
     </View>
   );
 }
