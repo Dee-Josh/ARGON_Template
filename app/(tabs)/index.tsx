@@ -8,6 +8,11 @@ import { Text, TextInput } from "react-native-paper";
 
 
 export default function Index() {
+
+  const fetchHabits = async ()=>{
+    // get habits from Database
+  }
+
   return (
     <View
       style={styles.container}

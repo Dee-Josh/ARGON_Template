@@ -1,7 +1,7 @@
 import { useAuth } from "@/lib/context/AuthContext";
 import { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { SegmentedButtons, TextInput, Button } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
+import { Text, SegmentedButtons, TextInput, Button, useTheme } from "react-native-paper";
 
 const FREQUENCIES = ["daily", "weekly", "monthly"]
 
@@ -10,7 +10,9 @@ export default function AddHabitsScreen() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [frequency, setFrequency] = useState("daily");
+  const [error, setError] = useState("");
   const {user} = useAuth();
+  const theme = useTheme();
 
   const handleSubmit = async ()=> {
     if (!user) return;
@@ -49,6 +51,7 @@ export default function AddHabitsScreen() {
       >
         Add Habit
       </Button>
+      {error && (<Text style={{color: theme.colors.error}}>{error}</Text>)}
     </View>
   );
 }
