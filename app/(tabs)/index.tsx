@@ -17,13 +17,11 @@ export default function Index() {
     <View
       style={styles.container}
     >
-      <Text style={{
-          color: "#F5F5F5"
-        }}
-        variant="titleMedium"
-      >
-        Welcome to the Home Screen
-      </Text>
+     <View>
+      <Text  variant="headlineSmall">Today's Habits</Text>
+     </View>
+
+     
     </View>
   );
 }
