@@ -1,3 +1,4 @@
+import { useAuth } from "@/lib/context/AuthContext";
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { SegmentedButtons, TextInput, Button } from "react-native-paper";
@@ -9,10 +10,10 @@ export default function AddHabitsScreen() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [frequency, setFrequency] = useState("daily");
-  // const
+  const {user} = useAuth();
 
   const handleSubmit = async ()=> {
-
+    if (!user) return;
   }
 
 
