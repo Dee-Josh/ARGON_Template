@@ -8,7 +8,12 @@ const FREQUENCIES = ["daily", "weekly", "monthly"]
 export default function AddHabitsScreen() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [frequency, setFrequency] = useState("");
+  const [frequency, setFrequency] = useState("daily");
+  // const
+
+  const handleSubmit = async ()=> {
+
+  }
 
 
   return (
@@ -16,11 +21,13 @@ export default function AddHabitsScreen() {
       <TextInput
         label="Title"
         mode="outlined"
+        onChangeText={setTitle}
         style={styles.input}
       />
       <TextInput
         label="Description"
         mode="outlined"
+        onChangeText={setDescription}
         style={styles.input}
       />
       <View style={styles.frequencyContainer}>
@@ -28,9 +35,17 @@ export default function AddHabitsScreen() {
             value: freq,
             label: freq.charAt(0).toUpperCase() + freq.slice(1),
           }))} 
+          value = {frequency}
+          onValueChange={(value)=>{
+            setFrequency(value);
+          }}
         />
       </View>
-      <Button mode="contained">
+      <Button 
+        mode="contained" 
+        disabled={!title || !description}
+        onPress={handleSubmit}  
+      >
         Add Habit
       </Button>
     </View>
