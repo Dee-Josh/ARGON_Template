@@ -1,6 +1,7 @@
 // HOME SCREEN
 
 import { View, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Text, TextInput } from "react-native-paper";
 
 
@@ -20,8 +21,11 @@ export default function Index() {
      <View>
       <Text  variant="headlineSmall">Today's Habits</Text>
      </View>
+     <ScrollView>
+      
+     </ScrollView>
 
-     
+
     </View>
   );
 }
