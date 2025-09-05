@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from "@/lib/context/AuthContext";
 import { useEffect } from "react";
 import { HeaderShownContext } from "@react-navigation/elements";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 
 function RouteGuard({children}: {children: React.ReactNode}){
@@ -35,6 +36,7 @@ export default function RootLayout() {
 
   return(
     <AuthProvider>
+      <GestureHandlerRootView>
       <SafeAreaProvider>
         {/* <RouteGuard> */}
         <Stack screenOptions={{headerShown: false}}>
@@ -43,6 +45,7 @@ export default function RootLayout() {
         </Stack>
         {/* </RouteGuard> */}
       </SafeAreaProvider>
+      </GestureHandlerRootView>
     </AuthProvider>
   )
 }
