@@ -1,5 +1,6 @@
 // HOME SCREEN
 
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -24,23 +25,30 @@ export default function Index() {
     <View
       style={styles.container}
     >
-     <View>
-      <Text  variant="headlineSmall">Today's Habits</Text>
+     <View style={styles.header}>
+      <Text  variant="headlineSmall" style={styles.title}>Today's Habits</Text>
      </View>
      
 
-      {habits.length === 0 ?  <View>
-          <Text> No Habits Yet. Add your first Habit!</Text>
-
-        </View> : (
-          <ScrollView>
-            {habits.map((habits, key)=> (
-              <View key={key}>
-                <Text>{habits.title}</Text>
-                <Text>{habits.description}</Text>
+      {habits.length === 0 ? ( 
+        <View style={styles.emptyState}>
+          <Text style={styles.emptyStateCard}> No Habits Yet. Add your first Habit!</Text>
+        </View>) : (
+          habits.map((habits, key)=> (
+            <ScrollView key={key}  style={styles.cardContent}>
+              <Text style={styles.cardTitle}>{habits.title}</Text>
+              <Text style={styles.cardDescription}>{habits.description}</Text>
+              <View  style={styles.cardFooter}>
+                <View style={styles.streakBadge}>
+                  <MaterialCommunityIcons name="fire" size={18} color={'#ff9800'} />
+                  <Text style={styles.streakText}>{habits.streak_count} day streak</Text>
+                </View>
+                <View style={styles.frequencyBadge}>
+                  <Text>{habits.frequncy.ChartAt(0).toUpperCase + habits.frequncy.slice(1)}</Text>
+                </View>
               </View>
-            ))}
-          </ScrollView>
+            </ScrollView>
+          ))
         )
       }
 
