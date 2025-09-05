@@ -1,9 +1,9 @@
 // HOME SCREEN
 
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, Swipeable } from "react-native-gesture-handler";
 import { Surface, Text, TextInput } from "react-native-paper";
 import CardContent from "react-native-paper/lib/typescript/components/Card/CardContent";
 
@@ -22,35 +22,40 @@ const habits = [
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
-
+    id: 1,
+    idd: "hfhfhfh",
   },
   {
     title: "Do this Daily",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
-
+    id: 2,
+    idd: "hfhfhfffh",
   },
   {
     title: "Do this Daily",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
-
+    id: 3,
+    idd: "hfhfhfjfjh",
   },
   {
     title: "Do this Daily",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
-
+    id: 4,
+    idd: "hfhfhjkkffh",
   },
   {
     title: "Do this Daily",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
-
+    id: 5,
+    idd: "kfkf",
   },
 ]
 
@@ -60,6 +65,20 @@ export default function Index() {
   const fetchHabits = async ()=>{
     // get habits from Database
   }
+
+  const swipeableRefs = useRef({})
+
+  const renderLeftActions = ()=> (
+    <View>
+      <MaterialCommunityIcons name="check-circle-outline" size={32} color={'#fff'} />
+    </View>
+  );
+
+  const renderRightActions = ()=> (
+   <View>
+      <MaterialCommunityIcons name="trash-can-outline" size={32} color={'#fff'} />
+    </View>
+  );
 
   return (
     <View
@@ -75,21 +94,31 @@ export default function Index() {
             <Text style={styles.emptyStateText}> No Habits Yet. Add your first Habit!</Text>
           </View>) : (
             habits.map((habits, key)=> (
-              <Surface key={key}   style={styles.card} elevation={0}>
-                <View style={styles.cardContent}>
-                  <Text style={styles.cardTitle}>{habits.title}</Text>
-                  <Text style={styles.cardDescription}>{habits.description}</Text>
-                  <View  style={styles.cardFooter}>
-                    <View style={styles.streakBadge}>
-                      <MaterialCommunityIcons name="fire" size={18} color={'#ff9800'} />
-                      <Text style={styles.streakText}>{habits.streak_count} day streak</Text>
-                    </View>
-                    <View style={styles.frequencyBadge}>
-                      <Text style={styles.frequencyText}>{habits.frequency}</Text>
+              <Swipeable ref={(ref)=>{
+                  swipeableRefs.current[habits.id] = ref;
+                }}
+                key={key}
+                overshootLeft={false}
+                overshootRight={false}
+                renderLeftActions={renderLeftActions}
+                renderRightActions={renderRightActions}
+              >
+                <Surface key={key}   style={styles.card} elevation={0}>
+                  <View style={styles.cardContent}>
+                    <Text style={styles.cardTitle}>{habits.title}</Text>
+                    <Text style={styles.cardDescription}>{habits.description}</Text>
+                    <View  style={styles.cardFooter}>
+                      <View style={styles.streakBadge}>
+                        <MaterialCommunityIcons name="fire" size={18} color={'#ff9800'} />
+                        <Text style={styles.streakText}>{habits.streak_count} day streak</Text>
+                      </View>
+                      <View style={styles.frequencyBadge}>
+                        <Text style={styles.frequencyText}>{habits.frequency}</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              </Surface>
+                </Surface>
+              </Swipeable>
             ))
           )
         }

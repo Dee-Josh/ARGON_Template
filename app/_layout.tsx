@@ -35,17 +35,17 @@ export default function RootLayout() {
   // Use code from chatgpt to update the splashscreen and the authentication screen display logic
 
   return(
-    <AuthProvider>
-      <GestureHandlerRootView>
-      <SafeAreaProvider>
-        {/* <RouteGuard> */}
-        <Stack screenOptions={{headerShown: false}}>
-          {/* <Stack.Screen  name={!isAuth ? "login" : "(tabs)" } options={{headerShown: false}} /> */}
-          <Stack.Screen name="(tabs)" options={{headerShown: false}} />
-        </Stack>
-        {/* </RouteGuard> */}
-      </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </AuthProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <AuthProvider>
+        <SafeAreaProvider>
+          {/* <RouteGuard> */}
+          <Stack screenOptions={{headerShown: false}}>
+            {/* <Stack.Screen  name={!isAuth ? "login" : "(tabs)" } options={{headerShown: false}} /> */}
+            <Stack.Screen name="(tabs)" options={{headerShown: false}} />
+          </Stack>
+          {/* </RouteGuard> */}
+        </SafeAreaProvider>
+      </AuthProvider>
+    </GestureHandlerRootView>
   )
 }
