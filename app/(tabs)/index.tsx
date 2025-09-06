@@ -75,6 +75,19 @@ export default function Index() {
     ))
   }
 
+  const handleCheckHabit = (id: any)=>{
+    // const newStreakCount = habits[id].streak_count++;
+    // const updated = [...habits, habits[id].streak_count: newStreakCount]
+    // setHabits([...habits], )
+
+    const newStreakCount = habits[id].streak_count++;
+    const updated = habits.map((habit)=>(
+      habit.id === id ? {...habit, streak_count: newStreakCount} : habit
+    ));
+    setHabits(updated)
+
+  }
+
   const renderLeftActions = ()=> (
     <View style={styles.swipeActionLeft}>
       <MaterialCommunityIcons name="trash-can-outline" size={32} color={'#fff'} />
@@ -112,6 +125,8 @@ export default function Index() {
                 onSwipeableOpen={(direction)=>{
                   if (direction === 'left'){
                     handleDeleteHabit(habits.id);
+                  }else if (direction === 'right'){
+                    handleCheckHabit(habits.id);
                   }
 
 
