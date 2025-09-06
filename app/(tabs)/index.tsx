@@ -9,7 +9,11 @@ import CardContent from "react-native-paper/lib/typescript/components/Card/CardC
 
 
 
-const habits = [
+
+
+export default function Index() {
+
+  const [habits, setHabits] = useState([
   {
     title: "Do this Daily",
     description: "Drink 25 million gallons of water.",
@@ -57,10 +61,8 @@ const habits = [
     id: 5,
     idd: "kfkf",
   },
-]
+])
 
-
-export default function Index() {
 
   const fetchHabits = async ()=>{
     // get habits from Database
@@ -68,15 +70,19 @@ export default function Index() {
 
   const swipeableRefs = useRef({})
 
+  const handleDeleteHabit = (key)=>{
+    
+  }
+
   const renderLeftActions = ()=> (
-    <View>
-      <MaterialCommunityIcons name="check-circle-outline" size={32} color={'#fff'} />
+    <View style={styles.swipeActionLeft}>
+      <MaterialCommunityIcons name="trash-can-outline" size={32} color={'#fff'} />
     </View>
   );
 
   const renderRightActions = ()=> (
-   <View>
-      <MaterialCommunityIcons name="trash-can-outline" size={32} color={'#fff'} />
+   <View style={styles.swipeActionRight}>
+      <MaterialCommunityIcons name="check-circle-outline" size={32} color={'#fff'} />
     </View>
   );
 
@@ -95,15 +101,20 @@ export default function Index() {
           </View>) : (
             habits.map((habits, key)=> (
               <Swipeable ref={(ref)=>{
-                  swipeableRefs.current[habits.id] = ref;
+                  // swipeableRefs.current[habits.id] = ref;
                 }}
                 key={key}
                 overshootLeft={false}
                 overshootRight={false}
                 renderLeftActions={renderLeftActions}
                 renderRightActions={renderRightActions}
+                onSwipeableOpen={(direction)=>{
+                  if (direction === 'left'){
+                    handleDeleteHabit(key);
+                  }
+                }}
               >
-                <Surface key={key}   style={styles.card} elevation={0}>
+                <Surface style={styles.card} elevation={0}>
                   <View style={styles.cardContent}>
                     <Text style={styles.cardTitle}>{habits.title}</Text>
                     <Text style={styles.cardDescription}>{habits.description}</Text>
@@ -208,6 +219,26 @@ const styles = StyleSheet.create({
   },
   emptyStateText: {
    color: '#666',
+  },
+  swipeActionLeft: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    flex: 1,
+    backgroundColor: '#e53935',
+    borderRadius: 18,
+    marginBottom: 18,
+    marginTop: 2,
+    paddingLeft: 16,
+  },
+  swipeActionRight: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    flex: 1,
+    backgroundColor: '#4caf50',
+    borderRadius: 18,
+    marginBottom: 18,
+    marginTop: 2,
+    paddingRight: 16,
   },
 })
 
