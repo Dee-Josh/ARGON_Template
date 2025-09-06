@@ -2,10 +2,9 @@
 
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRef, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { ScrollView, Swipeable } from "react-native-gesture-handler";
-import { Surface, Text, TextInput } from "react-native-paper";
-import CardContent from "react-native-paper/lib/typescript/components/Card/CardContent";
+import { Surface, Text } from "react-native-paper";
 
 
 
@@ -15,14 +14,14 @@ export default function Index() {
 
   const [habits, setHabits] = useState([
   {
-    title: "Do this Daily",
+    title: "Do this Once",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
 
   },
   {
-    title: "Do this Daily",
+    title: "Do this Twice",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
@@ -30,7 +29,7 @@ export default function Index() {
     idd: "hfhfhfh",
   },
   {
-    title: "Do this Daily",
+    title: "Do this Thrice",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
@@ -38,7 +37,7 @@ export default function Index() {
     idd: "hfhfhfffh",
   },
   {
-    title: "Do this Daily",
+    title: "Do this Four-ice",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
@@ -46,7 +45,7 @@ export default function Index() {
     idd: "hfhfhfjfjh",
   },
   {
-    title: "Do this Daily",
+    title: "Do this Five-ice",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
@@ -54,7 +53,7 @@ export default function Index() {
     idd: "hfhfhjkkffh",
   },
   {
-    title: "Do this Daily",
+    title: "Do this Six-ice",
     description: "Drink 25 million gallons of water.",
     streak_count: 0,
     frequency: "Daily",
@@ -68,10 +67,12 @@ export default function Index() {
     // get habits from Database
   }
 
-  const swipeableRefs = useRef({})
+  const swipeableRefs = useRef<{ [key: string] : Swipeable | null }>({})
 
-  const handleDeleteHabit = (key)=>{
-    
+  const handleDeleteHabit = (id: any)=>{
+    setHabits((prev)=>(
+      prev.filter((item)=>item.id !== id)
+    ))
   }
 
   const renderLeftActions = ()=> (
@@ -101,7 +102,7 @@ export default function Index() {
           </View>) : (
             habits.map((habits, key)=> (
               <Swipeable ref={(ref)=>{
-                  // swipeableRefs.current[habits.id] = ref;
+                  swipeableRefs.current[habits.title] = ref;
                 }}
                 key={key}
                 overshootLeft={false}
@@ -110,8 +111,12 @@ export default function Index() {
                 renderRightActions={renderRightActions}
                 onSwipeableOpen={(direction)=>{
                   if (direction === 'left'){
-                    handleDeleteHabit(key);
+                    handleDeleteHabit(habits.id);
                   }
+
+
+                  swipeableRefs.current[habits.title]?.close();
+
                 }}
               >
                 <Surface style={styles.card} elevation={0}>
