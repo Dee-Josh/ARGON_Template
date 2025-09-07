@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     marginBottom: 18,
     marginTop: 2,
-    paddingLeft: 16,
+    // paddingLeft: 16,
   },
   swipeActionRight: {
     justifyContent: 'center',
