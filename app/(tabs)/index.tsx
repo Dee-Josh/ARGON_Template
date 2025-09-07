@@ -76,9 +76,9 @@ export default function Index() {
   }
 
   const handleCheckHabit = (id: any)=>{
-    // const newStreakCount = habits[id].streak_count++;
-    // const updated = [...habits, habits[id].streak_count: newStreakCount]
-    // setHabits([...habits], )
+    const newStreakCount = habits[id].streak_count++;
+    const updated = [...habits, habits[id].streak_count: newStreakCount]
+    setHabits([...habits], )
 
     const newStreakCount = habits[id].streak_count++;
     const updated = habits.map((habit)=>(
