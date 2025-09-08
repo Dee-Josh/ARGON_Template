@@ -1,11 +1,12 @@
 import { Tabs } from "expo-router";
+import { View } from "react-native";
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 export default function TabsLayout() {
   return(
-    <Tabs screenOptions={{tabBarActiveTintColor: "#009688", headerShadowVisible: false, headerTitleAlign: 'center', headerBackground: <View}}>
+    <Tabs screenOptions={{tabBarActiveTintColor: "#009688", headerShadowVisible: false, headerTitleAlign: 'center', headerBackground: (props:) }}>
       <Tabs.Screen 
         name="index" 
         options={{title: 'Home',
