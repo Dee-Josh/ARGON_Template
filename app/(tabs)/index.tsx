@@ -96,7 +96,7 @@ export default function Index() {
     // ));
     // setHabits(updated)
 
-    showToast("true", "error")
+    showToast("error", "error")
 
     setIsSwiped("true"+id)
 
@@ -120,7 +120,6 @@ export default function Index() {
     >
      <View style={styles.header}>
       <Text  variant="headlineSmall" style={styles.title}>Today's Habits {isSwiped}</Text>
-      <Button mode="text" onPress={()=>{showToast("success", "Joshua is a boy")}}>Click here</Button>
      </View>
      
       <ScrollView showsVerticalScrollIndicator={false}>
