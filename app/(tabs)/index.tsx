@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView, Swipeable } from "react-native-gesture-handler";
-import { Surface, Text } from "react-native-paper";
+import { Surface, Text, Button } from "react-native-paper";
 import Toast from "react-native-toast-message";
 
 
@@ -120,6 +120,7 @@ export default function Index() {
     >
      <View style={styles.header}>
       <Text  variant="headlineSmall" style={styles.title}>Today's Habits {isSwiped}</Text>
+      <Button mode="text" onPress={()=>{showToast("joshua is a boy", "success")}}>Click here</Button>
      </View>
      
       <ScrollView showsVerticalScrollIndicator={false}>
