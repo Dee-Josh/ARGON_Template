@@ -120,7 +120,7 @@ export default function Index() {
     >
      <View style={styles.header}>
       <Text  variant="headlineSmall" style={styles.title}>Today's Habits {isSwiped}</Text>
-      <Button mode="text" onPress={()=>{showToast("joshua is a boy", "success")}}>Click here</Button>
+      <Button mode="text" onPress={()=>{showToast("success", "Joshua is a boy")}}>Click here</Button>
      </View>
      
       <ScrollView showsVerticalScrollIndicator={false}>
