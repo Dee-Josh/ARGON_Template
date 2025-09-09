@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView, Swipeable } from "react-native-gesture-handler";
 import { Surface, Text } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 
 
@@ -62,6 +63,15 @@ export default function Index() {
   },
 ])
 
+  const [isSwiped, setIsSwiped] = useState('');
+  function showToast (type: string, error: string){
+    Toast.show({
+      type: type,
+      text1: error,
+      position: "top",
+      topOffset: 50,
+    })
+  }
 
   const fetchHabits = async ()=>{
     // get habits from Database
@@ -80,11 +90,15 @@ export default function Index() {
     // const updated = [...habits, habits[id].streak_count: newStreakCount]
     // setHabits([...habits], )
 
-    const newStreakCount = habits[id].streak_count++;
-    const updated = habits.map((habit)=>(
-      habit.id === id ? {...habit, streak_count: newStreakCount} : habit
-    ));
-    setHabits(updated)
+    // const newStreakCount = habits[id].streak_count++;
+    // const updated = habits.map((habit)=>(
+    //   habit.id === id ? {...habit, streak_count: newStreakCount} : habit
+    // ));
+    // setHabits(updated)
+
+    showToast("true", "error")
+
+    setIsSwiped("true"+id)
 
   }
 
@@ -105,7 +119,7 @@ export default function Index() {
       style={styles.container}
     >
      <View style={styles.header}>
-      <Text  variant="headlineSmall" style={styles.title}>Today's Habits</Text>
+      <Text  variant="headlineSmall" style={styles.title}>Today's Habits {isSwiped}</Text>
      </View>
      
       <ScrollView showsVerticalScrollIndicator={false}>
