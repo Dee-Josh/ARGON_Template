@@ -77,7 +77,7 @@ export default function Index() {
   }
 
   const fetchHabits = async ()=>{
-    get habits from Database
+    // get habits from Database
   }
   
 
