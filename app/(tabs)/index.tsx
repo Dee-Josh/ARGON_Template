@@ -64,6 +64,9 @@ export default function Index() {
 ])
 
   const [isSwiped, setIsSwiped] = useState('');
+  const [completedHabits, setCompletedHabits] = useState();
+
+
   function showToast (type: string, error: string){
     Toast.show({
       type: type,
@@ -74,8 +77,9 @@ export default function Index() {
   }
 
   const fetchHabits = async ()=>{
-    // get habits from Database
+    get habits from Database
   }
+  
 
   const swipeableRefs = useRef<{ [key: string] : Swipeable | null }>({})
 
