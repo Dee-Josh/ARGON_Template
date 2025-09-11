@@ -101,11 +101,11 @@ export default function Index() {
     // const updated = [...habits, habits[id].streak_count: newStreakCount]
     // setHabits([...habits], )
 
-    // const newStreakCount = habits[id].streak_count++;
-    // const updated = habits.map((habit)=>(
-    //   habit.id === id ? {...habit, streak_count: newStreakCount} : habit
-    // ));
-    // setHabits(updated)
+    const newStreakCount = habits[id].streak_count++;
+    const updated = habits.map((habit)=>(
+      habit.id === id ? {...habit, streak_count: newStreakCount} : habit
+    ));
+    setHabits(updated)
 
     setIsSwiped("true"+id);
 
