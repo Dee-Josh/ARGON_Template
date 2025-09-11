@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView, Swipeable } from "react-native-gesture-handler";
-import { Surface, Text, Button } from "react-native-paper";
+import { Surface, Text } from "react-native-paper";
 import Toast from "react-native-toast-message";
 
 
@@ -20,7 +20,8 @@ export default function Index() {
     streak_count: 0,
     frequency: "Daily",
     date_completed: "",
-    
+    id: 0,
+    idd: "hfffhh",
   },
   {
     title: "Do this Twice",
@@ -106,7 +107,10 @@ export default function Index() {
     // ));
     // setHabits(updated)
 
-    setIsSwiped("true"+id)
+    setIsSwiped("true"+id);
+
+    console.log(habits[id]);
+    
 
   }
 
