@@ -106,8 +106,6 @@ export default function Index() {
     // ));
     // setHabits(updated)
 
-    showToast("error", "error")
-
     setIsSwiped("true"+id)
 
   }
