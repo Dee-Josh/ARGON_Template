@@ -101,14 +101,15 @@ export default function Index() {
     // const updated = [...habits, habits[id].streak_count: newStreakCount]
     // setHabits([...habits], )
 
-    const updatedHabits = [];
+    let updatedHabits = [];
     const eachHabit = habits.map((habit)=>{
       console.log(habit.id);
 
-      if (habit.id === id) {
+      if (habit.id !== id) {
         console.log("inside");
-        
+        updatedHabits.push(habit);
       }
+      setHabits(updatedHabits)
       
     })
 
@@ -130,7 +131,7 @@ export default function Index() {
 
     setIsSwiped("true"+id);
 
-    console.log(habits[id]);
+    // console.log(habits[id]);
     
 
   }
