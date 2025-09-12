@@ -102,10 +102,20 @@ export default function Index() {
     // setHabits([...habits], )
 
     const newStreakCount = habits[id].streak_count++;
-    const updated = habits.map((habit)=>(
-      habit.id === id ? {...habit, streak_count: newStreakCount} : habit
-    ));
-    setHabits(updated)
+    // setHabits(habits.map((habit)=>(
+    //   habit.id === id ? {...habit, streak_count: newStreakCount} : habit
+    // )));
+    // setHabits(updated)
+
+    setHabits([ {
+      title: "Do this Six-ice",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 5,
+      idd: "kfkf",
+    },])
 
     setIsSwiped("true"+id);
 
