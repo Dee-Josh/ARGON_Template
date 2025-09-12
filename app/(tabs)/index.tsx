@@ -97,26 +97,16 @@ export default function Index() {
   }
 
   const handleCheckHabit = (id: any)=>{
-    // const newStreakCount = habits[id].streak_count++;
-    // const updated = [...habits, habits[id].streak_count: newStreakCount]
-    // setHabits([...habits], )
-
-    const newStreakCount = habits[id].streak_count + 1;
-    console.log(newStreakCount);
-    
-
+    const newStreakCount = habits[id].streak_count + 1;    
     let updatedHabits = [];
     const eachHabit = habits.map((habit)=>{
-      // console.log(habit.id);
-
       if (habit.id !== id) {
         updatedHabits.push(habit);
       }else{
-        console.log("inside");
+        // console.log("inside");
         updatedHabits.push({...habit, streak_count: newStreakCount})
       }
       setHabits(updatedHabits)
-      
     })
 
     // const newStreakCount = habits[id].streak_count++;
