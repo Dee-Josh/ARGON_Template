@@ -91,19 +91,28 @@ export default function Index() {
   const swipeableRefs = useRef<{ [key: string] : Swipeable | null }>({})
 
   const handleDeleteHabit = (id: any)=>{
-    setHabits((prev)=>(
-      prev.filter((item)=>item.id !== id)
-    ))
+    // setHabits((prev)=>(
+    //   prev.filter((item)=>item.id !== id)
+    // ))
+
+    let updatedHabits = [];
+    const eachHabit = habits.map((habit)=>{
+      if (habit.id !== id) {
+        updatedHabits.push(habit);
+      }
+      setHabits(updatedHabits)
+    })
   }
 
   const handleCheckHabit = (id: any)=>{
-    const newStreakCount = habits[id].streak_count + 1;    
+    // const newStreakCount = habits[id].streak_count + 1;
+  
     let updatedHabits = [];
     const eachHabit = habits.map((habit)=>{
       if (habit.id !== id) {
         updatedHabits.push(habit);
       }else{
-        // console.log("inside");
+        const newStreakCount = habit.streak_count + 1;
         updatedHabits.push({...habit, streak_count: newStreakCount})
       }
       setHabits(updatedHabits)
@@ -156,10 +165,9 @@ export default function Index() {
                   }else if (direction === 'right'){
                     handleCheckHabit(habits.id);
                   }
-
-
+                  // console.log(habits.id);
+                  
                   swipeableRefs.current[habits.title]?.close();
-
                 }}
               >
                 <Surface style={styles.card} elevation={0}>
