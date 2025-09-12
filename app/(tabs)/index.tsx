@@ -12,6 +12,7 @@ import Toast from "react-native-toast-message";
 
 
 export default function Index() {
+  const today = new Date().toDateString();
 
   const [habits, setHabits] = useState([
   {
@@ -26,9 +27,10 @@ export default function Index() {
   {
     title: "Do this Twice",
     description: "Drink 25 million gallons of water.",
-    streak_count: 0,
+    streak_count: 1,
     frequency: "Daily",
-    date_completed: "",
+    // date_completed: "",
+    date_completed: today,
     id: 1,
     idd: "hfhfhfh",
   },
@@ -72,6 +74,12 @@ export default function Index() {
 
   const [isSwiped, setIsSwiped] = useState('');
   const [completedHabits, setCompletedHabits] = useState();
+   // to know if it was completed today
+  const isCompletedToday = (task: any)=>{
+    if (task.date_completed === today){
+      return true;
+    }
+  }
 
 
   function showToast (type: string, error: string){
@@ -104,19 +112,22 @@ export default function Index() {
     })
   }
 
-  const handleCheckHabit = (id: any)=>{
-    // const newStreakCount = habits[id].streak_count + 1;
-  
-    let updatedHabits = [];
-    const eachHabit = habits.map((habit)=>{
-      if (habit.id !== id) {
-        updatedHabits.push(habit);
-      }else{
-        const newStreakCount = habit.streak_count + 1;
-        updatedHabits.push({...habit, streak_count: newStreakCount})
-      }
-      setHabits(updatedHabits)
-    })
+  const handleCheckHabit = (id: any, isCompletedToday: any)=>{
+    if (isCompletedToday){
+      // const newStreakCount = habits[id].streak_count + 1;
+      
+      let updatedHabits = [];
+      const eachHabit = habits.map((habit)=>{
+        if (habit.id !== id) {
+          updatedHabits.push(habit);
+        }else{
+          const newStreakCount = habit.streak_count + 1;
+          const dateCompleted = today;
+          updatedHabits.push({...habit, streak_count: newStreakCount, date_completed: dateCompleted})
+        }
+        setHabits(updatedHabits)
+      })
+    }
 
     // const newStreakCount = habits[id].streak_count++;
     // setHabits(habits.map((habit)=>(
@@ -124,6 +135,7 @@ export default function Index() {
     // )));
     // setHabits(updated)
   }
+
 
   const renderLeftActions = ()=> (
     <View style={styles.swipeActionLeft}>
@@ -142,7 +154,7 @@ export default function Index() {
       style={styles.container}
     >
      <View style={styles.header}>
-      <Text  variant="headlineSmall" style={styles.title}>Today's Habits {isSwiped}</Text>
+      <Text  variant="headlineSmall" style={styles.title}>Today's Habits {today}</Text>
      </View>
      
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -163,14 +175,14 @@ export default function Index() {
                   if (direction === 'left'){
                     handleDeleteHabit(habits.id);
                   }else if (direction === 'right'){
-                    handleCheckHabit(habits.id);
+                    handleCheckHabit(habits.id, isCompletedToday(habits));
                   }
                   // console.log(habits.id);
                   
                   swipeableRefs.current[habits.title]?.close();
                 }}
               >
-                <Surface style={styles.card} elevation={0}>
+                <Surface style={[styles.card, isCompletedToday(habits) && styles.cardCompleted ]} elevation={0}>
                   <View style={styles.cardContent}>
                     <Text style={styles.cardTitle}>{habits.title}</Text>
                     <Text style={styles.cardDescription}>{habits.description}</Text>
@@ -219,6 +231,9 @@ const styles = StyleSheet.create({
    elevation: 4,
    borderColor: '#0000009f',
    borderWidth: 1
+  },
+  cardCompleted:{
+    opacity: 0.6
   },
   cardContent:{
     padding: 20,
