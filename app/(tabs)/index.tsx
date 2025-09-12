@@ -101,13 +101,19 @@ export default function Index() {
     // const updated = [...habits, habits[id].streak_count: newStreakCount]
     // setHabits([...habits], )
 
+    const newStreakCount = habits[id].streak_count + 1;
+    console.log(newStreakCount);
+    
+
     let updatedHabits = [];
     const eachHabit = habits.map((habit)=>{
-      console.log(habit.id);
+      // console.log(habit.id);
 
       if (habit.id !== id) {
-        console.log("inside");
         updatedHabits.push(habit);
+      }else{
+        console.log("inside");
+        updatedHabits.push({...habit, streak_count: newStreakCount})
       }
       setHabits(updatedHabits)
       
@@ -118,22 +124,6 @@ export default function Index() {
     //   habit.id === id ? {...habit, streak_count: newStreakCount} : habit
     // )));
     // setHabits(updated)
-
-    // setHabits([{
-    //   title: "Is Swiped is true",
-    //   description: "Drink 25 million gallons of water.",
-    //   streak_count: 0,
-    //   frequency: "Daily",
-    //   date_completed: "",
-    //   id: 100,
-    //   idd: "jjtjtj",
-    // },])
-
-    setIsSwiped("true"+id);
-
-    // console.log(habits[id]);
-    
-
   }
 
   const renderLeftActions = ()=> (
