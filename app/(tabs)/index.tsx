@@ -101,21 +101,26 @@ export default function Index() {
     // const updated = [...habits, habits[id].streak_count: newStreakCount]
     // setHabits([...habits], )
 
-    const newStreakCount = habits[id].streak_count++;
+    const editedHabits = habits.map((habit)=>{
+      console.log(habit.id);
+  
+    })
+
+    // const newStreakCount = habits[id].streak_count++;
     // setHabits(habits.map((habit)=>(
     //   habit.id === id ? {...habit, streak_count: newStreakCount} : habit
     // )));
     // setHabits(updated)
 
-    setHabits([ {
-      title: "Do this Six-ice",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 0,
-      frequency: "Daily",
-      date_completed: "",
-      id: 5,
-      idd: "kfkf",
-    },])
+    // setHabits([{
+    //   title: "Is Swiped is true",
+    //   description: "Drink 25 million gallons of water.",
+    //   streak_count: 0,
+    //   frequency: "Daily",
+    //   date_completed: "",
+    //   id: 100,
+    //   idd: "jjtjtj",
+    // },])
 
     setIsSwiped("true"+id);
 
