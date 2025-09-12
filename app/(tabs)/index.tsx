@@ -113,7 +113,7 @@ export default function Index() {
   }
 
   const handleCheckHabit = (id: any, isCompletedToday: any)=>{
-    if (isCompletedToday){
+    if (!isCompletedToday){
       // const newStreakCount = habits[id].streak_count + 1;
       
       let updatedHabits = [];
@@ -143,9 +143,10 @@ export default function Index() {
     </View>
   );
 
-  const renderRightActions = ()=> (
+  const renderRightActions = (isCompletedToday: any)=> (
    <View style={styles.swipeActionRight}>
-      <MaterialCommunityIcons name="check-circle-outline" size={32} color={'#fff'} />
+      {!isCompletedToday ? <MaterialCommunityIcons name="check-circle-outline" size={32} color={'#fff'} /> :
+      <Text style={{color: '#FFF'}}>Completed Today</Text>}
     </View>
   );
 
@@ -170,7 +171,7 @@ export default function Index() {
                 overshootLeft={false}
                 overshootRight={false}
                 renderLeftActions={renderLeftActions}
-                renderRightActions={renderRightActions}
+                renderRightActions={()=>(renderRightActions(isCompletedToday(habits)))}
                 onSwipeableOpen={(direction)=>{
                   if (direction === 'left'){
                     handleDeleteHabit(habits.id);
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
    borderWidth: 1
   },
   cardCompleted:{
-    opacity: 0.6
+    opacity: 0.6,
   },
   cardContent:{
     padding: 20,
