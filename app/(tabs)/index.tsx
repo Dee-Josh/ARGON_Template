@@ -101,9 +101,15 @@ export default function Index() {
     // const updated = [...habits, habits[id].streak_count: newStreakCount]
     // setHabits([...habits], )
 
-    const editedHabits = habits.map((habit)=>{
+    const updatedHabits = [];
+    const eachHabit = habits.map((habit)=>{
       console.log(habit.id);
-  
+
+      if (habit.id === id) {
+        console.log("inside");
+        
+      }
+      
     })
 
     // const newStreakCount = habits[id].streak_count++;
