@@ -1,18 +1,24 @@
-import { Text, View } from "react-native";
-import { TextInput } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
+import { Text, TextInput } from "react-native-paper";
 
 
 
 export default function StreaksScreen() {
   return (
     <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={styles.container}
     >
-      <Text>Welcome to the streaks screen</Text>
+      <Text>Habits Streak</Text>
     </View>
+    
+
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // justifyContent: "center",
+    alignItems: "center",
+  },
+})
