@@ -111,15 +111,25 @@ export default function StreaksScreen() {
     },
   ];
 
+  const badgeStyles = [styles.badge1, styles.badge2, styles.badge3]
 
   return (
-    <View  style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>Habits Streak</Text>
 
       {
         rankedHabits.length > 0 && (
-          <View>
-            <Text></Text>
+        <View style={styles.rakingContainer}>
+            <Text>🏅 Top Streaks</Text>
+            {rankedHabits.slice(0, 3).map((item, key)=>(
+              <View key={key}>
+                <View style={[styles.rankingBadge, badgeStyles[key]]}>
+                  <Text>{key + 1}</Text>
+                </View>
+                <Text>{item.habit.title}</Text>
+                <Text>{item.bestStreak}</Text>
+              </View>
+            ))}
           </View>
         )
       }
@@ -129,7 +139,7 @@ export default function StreaksScreen() {
           <View style={styles.emptyState}>
             <Text style={styles.emptyStateText}> No Habits Yet. Add your first Habit!</Text>
           </View>) : (
-          <ScrollView showsVerticalScrollIndicator={false}  style={styles.container}>
+          <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             {rankedHabits.map(({ habit, streak, bestStreak, total }, key) => (
               <Card key={key} style={[styles.card, key === 0 && styles.firstCard]}>
                 <Card.Content>
