@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Card, Text, TextInput } from "react-native-paper";
 
 
 
 export default function StreaksScreen() {
-    const today = new Date().toDateString();
+  const today = new Date().toDateString();
 
   const [habits, setHabits] = useState([
     {
@@ -90,44 +91,71 @@ export default function StreaksScreen() {
       bestStreak: "",
       total: 0,
     },
+    {
+      habit: "",
+      streak: "",
+      bestStreak: "",
+      total: 0,
+    },
+    {
+      habit: "",
+      streak: "",
+      bestStreak: "",
+      total: 0,
+    },
+    {
+      habit: "",
+      streak: "",
+      bestStreak: "",
+      total: 0,
+    },
   ];
 
 
   return (
-    <View
-      style={styles.container}
-    >
-      <Text>Habits Streak</Text>
+    <View  style={styles.container}>
+      <Text style={styles.title}>Habits Streak</Text>
+
       {
-      habits.length === 0 ? (
-      <View style={styles.emptyState}>
-        <Text style={styles.emptyStateText}> No Habits Yet. Add your first Habit!</Text>
-      </View>) : (
-        rankedHabits.map(({habit, streak, bestStreak, total}, key)=>(
-          <Card key={key}>
-            <Card.Content>
-              <Text>{habit.title}</Text>
-              <Text>{habit.description}</Text>
-              <View>
-                <View>
-                  <Text>🔥 {streak}</Text>
-                  <Text>Current</Text>
-                </View>
-                <View>
-                  <Text>🏆 {bestStreak}</Text>
-                  <Text>Best</Text>
-                </View>
-                <View>
-                  <Text>✅ {total}</Text>
-                  <Text>Current</Text>
-                </View>
-                
-              </View>
-            </Card.Content>
-          </Card>
-        ))
-      )
-    }
+        rankedHabits.length > 0 && (
+          <View>
+            <Text></Text>
+          </View>
+        )
+      }
+
+      {
+        habits.length === 0 ? (
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateText}> No Habits Yet. Add your first Habit!</Text>
+          </View>) : (
+          <ScrollView showsVerticalScrollIndicator={false}  style={styles.container}>
+            {rankedHabits.map(({ habit, streak, bestStreak, total }, key) => (
+              <Card key={key} style={[styles.card, key === 0 && styles.firstCard]}>
+                <Card.Content>
+                  <Text variant="headlineMedium" style={styles.habitTitle}>{habit.title}</Text>
+                  <Text style={styles.habitDescription}>{habit.description}</Text>
+                  <View style={styles.statsRow}>
+                    <View style={styles.statBadge}>
+                      <Text style={styles.statBadgeText}>🔥 {streak}</Text>
+                      <Text style={styles.statBadgeLabel}>Current</Text>
+                    </View>
+                    <View style={styles.statBadgeGold}>
+                      <Text style={styles.statBadgeText}>🏆 {bestStreak}</Text>
+                      <Text style={styles.statBadgeLabel}>Best</Text>
+                    </View>
+                    <View style={styles.statBadgeGreen}>
+                      <Text style={styles.statBadgeText}>✅ {total}</Text>
+                      <Text style={styles.statBadgeLabel}>Total</Text>
+                    </View>
+
+                  </View>
+                </Card.Content>
+              </Card>
+            ))
+            }</ScrollView>
+        )
+      }
     </View>
   );
 }
@@ -135,15 +163,88 @@ export default function StreaksScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f5f5f5',
+    padding: 16,
     // justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
   },
-   emptyState: {
+  title: {
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
+  emptyState: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   emptyStateText: {
-   color: '#666',
+    color: '#666',
   },
+  card: {
+    marginBottom: 18,
+    borderRadius: 18,
+    backgroundColor: "#fff",
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
+  },
+  firstCard: {
+    borderWidth: 2,
+    borderColor: "#7c4dff",
+  },
+  habitTitle: {
+    fontWeight: "bold",
+    fontSize: 18,
+    marginBottom: 16,
+  },
+  habitDescription: {
+    color: "#6c6c80",
+    marginBottom: 8,
+  },
+  statsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 12,
+    marginTop: 8,
+  },
+  statBadge: {
+    backgroundColor: "#fff3e0",
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignItems: "center",
+    minWidth: 60,
+  },
+  statBadgeGold: {
+    backgroundColor: "#fffde7",
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignItems: "center",
+    minWidth: 60,
+  },
+  statBadgeGreen: {
+    backgroundColor: "#e8f5e9",
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignItems: "center",
+    minWidth: 60,
+  },
+  statBadgeText: {
+    fontWeight: "bold",
+    fontSize: 15,
+    color: "#22223b"
+  },
+  statBadgeLabel: {
+    fontSize: 11,
+    color: "#888",
+    marginTop: 2,
+    fontWeight: "500",
+  },
+
 })
