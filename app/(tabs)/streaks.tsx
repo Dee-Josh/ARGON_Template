@@ -298,6 +298,4 @@ const styles = StyleSheet.create({
     color: "#7c4dff",
     fontWeight: 'bold',
   },
-
-
 })
