@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Card, Text, TextInput } from "react-native-paper";
+import { Card, Text } from "react-native-paper";
 
 
 
@@ -97,7 +97,7 @@ export default function StreaksScreen() {
     },
     {
       habit: {
-      title: "Do this Third",
+      title: "Do this Thrice",
       description: "Drink 25 million gallons of water.",
       streak_count: 0,
       frequency: "Daily",
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   habitTitle: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 16,
+    marginBottom: 8,
   },
   habitDescription: {
     color: "#6c6c80",
