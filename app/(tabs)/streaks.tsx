@@ -68,66 +68,109 @@ export default function StreaksScreen() {
 
   const rankedHabits = [
     {
-      habit: "",
+      habit: {
+      title: "Do this Once",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 0,
+      idd: "hfffhh",
+    },
       streak: "",
       bestStreak: "",
       total: 0,
     },
     {
-      habit: "",
+      habit: {
+      title: "Do this Twice",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 0,
+      idd: "hfffhh",
+    },
       streak: "",
       bestStreak: "",
       total: 0,
     },
     {
-      habit: "",
+      habit: {
+      title: "Do this Third",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 0,
+      idd: "hfffhh",
+    },
       streak: "",
       bestStreak: "",
       total: 0,
     },
     {
-      habit: "",
+      habit: {
+      title: "Do this Four-ice",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 0,
+      idd: "hfffhh",
+    },
       streak: "",
       bestStreak: "",
       total: 0,
     },
     {
-      habit: "",
+      habit: {
+      title: "Do this Five-ice",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 0,
+      idd: "hfffhh",
+    },
       streak: "",
       bestStreak: "",
       total: 0,
     },
     {
-      habit: "",
+      habit: {
+      title: "Do this Six-ice",
+      description: "Drink 25 million gallons of water.",
+      streak_count: 0,
+      frequency: "Daily",
+      date_completed: "",
+      id: 0,
+      idd: "hfffhh",
+    },
       streak: "",
       bestStreak: "",
       total: 0,
     },
-    {
-      habit: "",
-      streak: "",
-      bestStreak: "",
-      total: 0,
-    },
+    
   ];
 
   const badgeStyles = [styles.badge1, styles.badge2, styles.badge3]
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Habits Streak</Text>
+      <Text  variant="headlineSmall" style={styles.title}>Habits Streak</Text>
 
       {
         rankedHabits.length > 0 && (
-        <View style={styles.rakingContainer}>
-            <Text>🏅 Top Streaks</Text>
+        <View style={styles.rankingContainer}>
+            <Text  style={styles.rankingTitle}>🏅 Top Streaks</Text>
             {rankedHabits.slice(0, 3).map((item, key)=>(
-              <View key={key}>
+              <View key={key}  style={styles.rankingRow}>
                 <View style={[styles.rankingBadge, badgeStyles[key]]}>
-                  <Text>{key + 1}</Text>
+                  <Text  style={styles.rankingBadgeText}>{key + 1}</Text>
                 </View>
-                <Text>{item.habit.title}</Text>
-                <Text>{item.bestStreak}</Text>
+                <Text  style={styles.rankingHabit}>{item.habit.title}</Text>
+                <Text  style={styles.rankingStreak}>{item.bestStreak}</Text>
               </View>
             ))}
           </View>
@@ -256,5 +299,63 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontWeight: "500",
   },
+  rankingContainer: {
+    marginBottom: 24,
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    padding: 16,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
+  },
+  rankingTitle: {
+    fontWeight: "bold",
+    fontSize: 18,
+    marginBottom: 12,
+    color: "#fc4dff",
+    letterSpacing: 0.5,
+  },
+  rankingRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+    borderBottomWidth:1,
+    borderBottomColor: "#f0f0f0",
+    paddingBottom: 8,
+  },
+  rankingBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: "center",
+    marginRight: 10,
+    backgroundColor: "#e0e0e0",
+  },
+  badge1: { backgroundColor: "#ffd700"}, // Gold BGC
+  badge2: { backgroundColor: "#c0c0c0"}, // Silver BGC
+  badge3: { backgroundColor: "#cd7f32"}, // Bronze BGC
+
+  rankingBadgeText: {
+    fontWeight: "bold",
+    color: "#fff",
+    fontSize: 15,
+  },
+  rankingHabit: {
+    flex: 1,
+    fontSize: 15,
+    color: "#333",
+    fontWeight: '600',
+  },
+  rankingStreak: {
+    fontSize: 14,
+    color: "#7c4dff",
+    fontWeight: 'bold',
+  },
+
 
 })
