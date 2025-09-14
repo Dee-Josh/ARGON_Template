@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Card, Text } from "react-native-paper";
 import habitArray from "@/lib/habits";
+import habitArray from "@/lib/habits";
 
 
 
