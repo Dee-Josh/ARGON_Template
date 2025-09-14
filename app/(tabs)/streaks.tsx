@@ -2,69 +2,14 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Card, Text } from "react-native-paper";
+import habitArray from "@/lib/habits";
 
 
 
 export default function StreaksScreen() {
   const today = new Date().toDateString();
 
-  const [habits, setHabits] = useState([
-    {
-      title: "Do this Once",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 0,
-      frequency: "Daily",
-      date_completed: "",
-      id: 0,
-      idd: "hfffhh",
-    },
-    {
-      title: "Do this Twice",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 1,
-      frequency: "Daily",
-      // date_completed: "",
-      date_completed: today,
-      id: 1,
-      idd: "hfhfhfh",
-    },
-    {
-      title: "Do this Thrice",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 0,
-      frequency: "Daily",
-      date_completed: "",
-      id: 2,
-      idd: "hfhfhfffh",
-    },
-    {
-      title: "Do this Four-ice",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 0,
-      frequency: "Daily",
-      date_completed: "",
-      id: 3,
-      idd: "hfhfhfjfjh",
-    },
-    {
-      title: "Do this Five-ice",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 0,
-      frequency: "Daily",
-      date_completed: "",
-      id: 4,
-      idd: "hfhfhjkkffh",
-    },
-    {
-      title: "Do this Six-ice",
-      description: "Drink 25 million gallons of water.",
-      streak_count: 0,
-      frequency: "Daily",
-      date_completed: "",
-      id: 5,
-      idd: "kfkf",
-    },
-  ])
+  const [habits, setHabits] = useState(habitArray)
 
   const rankedHabits = [
     {
@@ -170,7 +115,7 @@ export default function StreaksScreen() {
                   <Text  style={styles.rankingBadgeText}>{key + 1}</Text>
                 </View>
                 <Text  style={styles.rankingHabit}>{item.habit.title}</Text>
-                <Text  style={styles.rankingStreak}>{item.bestStreak}</Text>
+                <Text  style={styles.rankingStreak}>{item.bestStreak || 0}</Text>
               </View>
             ))}
           </View>
@@ -349,7 +294,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     color: "#333",
-    fontWeight: '600',
+    fontWeight: 800,
   },
   rankingStreak: {
     fontSize: 14,
