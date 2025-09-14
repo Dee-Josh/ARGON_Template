@@ -252,11 +252,11 @@ const styles = StyleSheet.create({
   habitTitle: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 8,
+    marginBottom: 0,
   },
   habitDescription: {
     color: "#6c6c80",
-    marginBottom: 8,
+    marginBottom: 4,
   },
   statsRow: {
     flexDirection: "row",
